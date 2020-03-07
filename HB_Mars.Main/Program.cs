@@ -1,7 +1,5 @@
-﻿using HB_Mars.Helper.Directions;
+﻿using System;
 using HB_Mars.Helper.Models;
-using HB_Mars.Helper.Rover;
-using System;
 
 namespace HB_Mars.Main
 {
@@ -31,7 +29,6 @@ namespace HB_Mars.Main
             roverRequest.CurrentX = Convert.ToInt32(currentPositionFirstRover[0]);
             roverRequest.CurrentY = Convert.ToInt32(currentPositionFirstRover[1]);
             roverRequest.CurrentFacing = currentPositionFirstRover[2].Trim();
-
 
             roverRequest.SecondRoverX = Convert.ToInt32(currentPositionSecondRover[0]);
             roverRequest.SecondRoverY = Convert.ToInt32(currentPositionSecondRover[1]);
