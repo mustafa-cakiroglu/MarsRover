@@ -58,7 +58,6 @@ namespace HB_Mars.Main
 
                 var positionSecondRover = roverMovement.RoverMove(secondRoverRequest);
                 Console.WriteLine(positionSecondRover.Position.xCoordinate + " " + positionSecondRover.Position.yCoordinate + " " + positionSecondRover.Position.Face);
-
             }
             Console.ReadLine();
         }
