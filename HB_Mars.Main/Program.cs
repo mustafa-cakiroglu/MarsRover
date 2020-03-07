@@ -3,11 +3,12 @@ using HB_Mars.Helper.Models;
 
 namespace HB_Mars.Main
 {
-    class Program
+    static class Program
     {
         static void Main(string[] args)
         {
             var roverRequest = new RoverRequest();
+            var secondRoverRequest = new RoverRequest();
             Console.WriteLine("Enter the top position : ");
             string[] topPosition = Console.ReadLine().Split(' ');
 
@@ -23,6 +24,7 @@ namespace HB_Mars.Main
             Console.WriteLine("Enter the second rover's directions: ");
             roverRequest.SecondDirection = Console.ReadLine();
 
+
             roverRequest.TopPositionX = Convert.ToInt32(topPosition[0]);
             roverRequest.TopPositionY = Convert.ToInt32(topPosition[1]);
 
@@ -33,6 +35,12 @@ namespace HB_Mars.Main
             roverRequest.SecondRoverX = Convert.ToInt32(currentPositionSecondRover[0]);
             roverRequest.SecondRoverY = Convert.ToInt32(currentPositionSecondRover[1]);
             roverRequest.SecondFacing = currentPositionSecondRover[2].Trim();
+
+            Run(roverRequest);
+            Console.ReadLine();
+        }
+        public static void Run(RoverRequest roverRequest)
+        {
 
             var roverMovement = new RoverMovement();
             var positionFirstRover = roverMovement.RoverMove(roverRequest);
@@ -46,9 +54,9 @@ namespace HB_Mars.Main
                 var secondRoverRequest = new RoverRequest();
                 secondRoverRequest.TopPositionX = roverRequest.TopPositionX;
                 secondRoverRequest.TopPositionY = roverRequest.TopPositionY;
-                secondRoverRequest.CurrentX= roverRequest.SecondRoverX;
+                secondRoverRequest.CurrentX = roverRequest.SecondRoverX;
                 secondRoverRequest.CurrentY = roverRequest.SecondRoverY;
-                secondRoverRequest.CurrentFacing= roverRequest.SecondFacing;
+                secondRoverRequest.CurrentFacing = roverRequest.SecondFacing;
                 secondRoverRequest.Direction = roverRequest.SecondDirection;
                 secondRoverRequest.SecondRoverX = positionFirstRover.Position.xCoordinate;
                 secondRoverRequest.SecondRoverY = positionFirstRover.Position.yCoordinate;
@@ -56,7 +64,6 @@ namespace HB_Mars.Main
                 var positionSecondRover = roverMovement.RoverMove(secondRoverRequest);
                 Console.WriteLine(positionSecondRover.Position.xCoordinate + " " + positionSecondRover.Position.yCoordinate + " " + positionSecondRover.Position.Face);
             }
-            Console.ReadLine();
         }
     }
-} 
+}
