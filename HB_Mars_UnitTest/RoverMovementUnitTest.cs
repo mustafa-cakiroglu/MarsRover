@@ -94,6 +94,29 @@ namespace HB_Mars_UnitTest
             const string expectedErrorMessage = "Direction cannot be null or empty.";
             Assert.Equal(expectedErrorMessage, actual);
         }
+        [Fact]
+        public void RoverMovement_ShouldSuccess_WhenDirectionIsLowercase()
+        {
+            var testRoverRequest = new TestRoverRequest
+            {
+                TopPositionX = 5,
+                TopPositionY = 5,
+                CurrentX = 1,
+                CurrentY = 2,
+                CurrentFacing = "N",
+                Direction = "lmlmlmlmm",
+                ExpectedFace = "N",
+                ExpectedXCoordinate = 1,
+                ExpectedYCoordinate = 3
+            };
+
+            var roverMovement = new RoverMovement();
+            var responseModel = roverMovement.RoverMove(testRoverRequest);
+            Assert.IsType<TestRoverRequest>(testRoverRequest);
+            Assert.Equal(testRoverRequest.ExpectedFace, responseModel.Position.Face);
+            Assert.Equal(testRoverRequest.ExpectedXCoordinate, responseModel.Position.xCoordinate);
+            Assert.Equal(testRoverRequest.ExpectedYCoordinate, responseModel.Position.yCoordinate);
+        }
     }
 
     public class RoverRequestTestTheoryData : TheoryData<RoverRequest>

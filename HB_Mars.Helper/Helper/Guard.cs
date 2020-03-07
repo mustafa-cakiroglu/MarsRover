@@ -37,5 +37,14 @@ namespace HB_Mars.Helper.Helper
                 throw new ArgumentNullException(argumentName);
             }
         }
+
+        public static void ForCaseInsensitive(string firtsArgument, string secondArgument)
+        {
+            if (firtsArgument != secondArgument)
+            {
+                throw new ArgumentException($"{firtsArgument} cannot be null or empty.");
+            }
+        }
+
     }
 }

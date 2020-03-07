@@ -25,11 +25,11 @@ namespace HB_Mars.Main
         private ResponseModel LastStateOfRover(RoverRequest roverRequest, Position position)
         {
             var response = new ResponseModel();
-            string existFacing = roverRequest.CurrentFacing;
-            var directionArray = roverRequest.Direction.ToCharArray();
-            foreach (var direct in directionArray)
+            string existFacing = roverRequest.CurrentFacing.ToUpper();
+            foreach (var direct in roverRequest.Direction.ToUpper().ToCharArray())
             {
-                if (direct.ToString() == "L" || direct.ToString() == "R")
+                if (direct.ToString() == "L"
+                    || direct.ToString() == "R")
                 {
                     var cardinalDirectionEnumId = EnumExtensions.GetValues<CardinalDirectionEnum>().FirstOrDefault(x => x.Label == existFacing)?.Id;
                     var turnPositionEnumId = EnumExtensions.GetValues<TurnPositionEnum>().FirstOrDefault(x => x.Label == direct.ToString())?.Id;
