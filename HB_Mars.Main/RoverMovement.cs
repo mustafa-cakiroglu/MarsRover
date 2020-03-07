@@ -22,13 +22,6 @@ namespace HB_Mars.Main
             return LastStateOfRover(roverRequest, position);
         }
 
-        public  void ValidateModel(RoverRequest roverRequest)
-        {
-            Guard.ForLessThanOrEqualToZero(roverRequest.TopPositionX, nameof(roverRequest.TopPositionX));
-            Guard.ForLessThanOrEqualToZero(roverRequest.TopPositionY, nameof(roverRequest.TopPositionY));
-            Guard.ForLessThanOrEqualToZero(roverRequest.CurrentFacing, nameof(roverRequest.CurrentFacing));
-            Guard.ForNullOrWhitespace(roverRequest.Direction, nameof(roverRequest.Direction));
-        }
         private ResponseModel LastStateOfRover(RoverRequest roverRequest, Position position)
         {
             var response = new ResponseModel();
@@ -54,6 +47,14 @@ namespace HB_Mars.Main
                 }
             }
             return response;
+        }
+
+        public void ValidateModel(RoverRequest roverRequest)
+        {
+            Guard.ForLessThanOrEqualToZero(roverRequest.TopPositionX, nameof(roverRequest.TopPositionX));
+            Guard.ForLessThanOrEqualToZero(roverRequest.TopPositionY, nameof(roverRequest.TopPositionY));
+            Guard.ForLessThanOrEqualToZero(roverRequest.CurrentFacing, nameof(roverRequest.CurrentFacing));
+            Guard.ForNullOrWhitespace(roverRequest.Direction, nameof(roverRequest.Direction));
         }
     }
 }

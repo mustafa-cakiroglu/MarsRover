@@ -22,24 +22,24 @@ namespace HB_Mars.Main
             string[] currentPositionSecondRover = Console.ReadLine().Split(' ');
 
             Console.WriteLine("Enter the second rover's directions: ");
-            roverRequest.SecondDirection = Console.ReadLine();
-
+            secondRoverRequest.Direction = Console.ReadLine();
 
             roverRequest.TopPositionX = Convert.ToInt32(topPosition[0]);
             roverRequest.TopPositionY = Convert.ToInt32(topPosition[1]);
-
             roverRequest.CurrentX = Convert.ToInt32(currentPositionFirstRover[0]);
             roverRequest.CurrentY = Convert.ToInt32(currentPositionFirstRover[1]);
             roverRequest.CurrentFacing = currentPositionFirstRover[2].Trim();
 
-            roverRequest.SecondRoverX = Convert.ToInt32(currentPositionSecondRover[0]);
-            roverRequest.SecondRoverY = Convert.ToInt32(currentPositionSecondRover[1]);
-            roverRequest.SecondFacing = currentPositionSecondRover[2].Trim();
+            secondRoverRequest.TopPositionX = Convert.ToInt32(topPosition[0]);
+            secondRoverRequest.TopPositionY = Convert.ToInt32(topPosition[1]);
+            secondRoverRequest.CurrentX = Convert.ToInt32(currentPositionSecondRover[0]);
+            secondRoverRequest.CurrentY = Convert.ToInt32(currentPositionSecondRover[1]);
+            secondRoverRequest.CurrentFacing = currentPositionSecondRover[2].Trim();
 
-            Run(roverRequest);
+            Run(roverRequest, secondRoverRequest);
             Console.ReadLine();
         }
-        public static void Run(RoverRequest roverRequest)
+        public static void Run(RoverRequest roverRequest, RoverRequest secondRoverRequest)
         {
 
             var roverMovement = new RoverMovement();
@@ -51,16 +51,8 @@ namespace HB_Mars.Main
             else
             {
                 Console.WriteLine(positionFirstRover.Position.xCoordinate + " " + positionFirstRover.Position.yCoordinate + " " + positionFirstRover.Position.Face);
-                var secondRoverRequest = new RoverRequest();
-                secondRoverRequest.TopPositionX = roverRequest.TopPositionX;
-                secondRoverRequest.TopPositionY = roverRequest.TopPositionY;
-                secondRoverRequest.CurrentX = roverRequest.SecondRoverX;
-                secondRoverRequest.CurrentY = roverRequest.SecondRoverY;
-                secondRoverRequest.CurrentFacing = roverRequest.SecondFacing;
-                secondRoverRequest.Direction = roverRequest.SecondDirection;
                 secondRoverRequest.SecondRoverX = positionFirstRover.Position.xCoordinate;
                 secondRoverRequest.SecondRoverY = positionFirstRover.Position.yCoordinate;
-
                 var positionSecondRover = roverMovement.RoverMove(secondRoverRequest);
                 Console.WriteLine(positionSecondRover.Position.xCoordinate + " " + positionSecondRover.Position.yCoordinate + " " + positionSecondRover.Position.Face);
             }

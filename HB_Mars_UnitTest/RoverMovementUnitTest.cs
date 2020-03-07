@@ -23,7 +23,7 @@ namespace HB_Mars_UnitTest
         [Fact]
         public void RoverMovement_ShouldArgumentNullException_WhenTopPositionXIsNull()
         {
-            var testRoverRequest =new TestRoverRequest
+            var testRoverRequest = new TestRoverRequest
             {
                 TopPositionX = 0,
                 TopPositionY = 5,
@@ -67,6 +67,31 @@ namespace HB_Mars_UnitTest
             var exception = Assert.IsType<ArgumentNullException>(result);
             var actual = exception.ParamName;
             const string expectedErrorMessage = "TopPositionY with value 0 should be more than zero.";
+            Assert.Equal(expectedErrorMessage, actual);
+        }
+
+        [Fact]
+        public void RoverMovement_ShouldArgumentException_WhenPositionIsNull()
+        {
+            var testRoverRequest = new TestRoverRequest
+            {
+                TopPositionX = 5,
+                TopPositionY = 5,
+                CurrentX = 1,
+                CurrentY = 2,
+                CurrentFacing = "N",
+                Direction = "",
+                ExpectedFace = "N",
+                ExpectedXCoordinate = 1,
+                ExpectedYCoordinate = 3
+            };
+
+            var roverMovement = new RoverMovement();
+            var result = Record.Exception(() => roverMovement.RoverMove(testRoverRequest));
+            Assert.NotNull(result);
+            var exception = Assert.IsType<ArgumentException>(result);
+            var actual = exception.Message;
+            const string expectedErrorMessage = "Direction cannot be null or empty.";
             Assert.Equal(expectedErrorMessage, actual);
         }
     }
